@@ -6,20 +6,20 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 @Service
 public class RecipService {
-    int number = 0;
-    HashMap<Integer, Ricept> allRecepts;
+  private   int number = 0;
+   private HashMap<Integer, Ricept> allRecepts;
 
-    public void addRecipt(int number, Ricept ricept) {
+    private void addRecipt(int number, Ricept ricept) {
 
         Ricept riceptA = allRecepts.getOrDefault(number, ricept);
         allRecepts.put(number++, riceptA);
     }
 
-    public Ricept getRicept(int number) {
+    private Ricept getRicept(int number) throws RuntimeException {
         if (allRecepts.containsKey(number)) {
-             return  allRecepts.get(1);
+             return  allRecepts.get(number);
         }
-        else return null;
+        else throw new RuntimeException("Error");
 
     }
 }
