@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 
 public class Ingridient {
-    String nameIng;
-    int countIng;
-    String typeIzm;
+ private    String nameIng;
+   private int countIng;
+ private    String typeIzm;
 }

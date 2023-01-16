@@ -6,16 +6,17 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 @Service
 public class RecipService {
-  private   int number = 0;
+  private   Integer number = 0;
    private HashMap<Integer, Ricept> allRecepts;
 
-    private void addRecipt(int number, Ricept ricept) {
+    public Integer addRecipt(Ricept ricept) {
 
         Ricept riceptA = allRecepts.getOrDefault(number, ricept);
         allRecepts.put(number++, riceptA);
+        return number;
     }
 
-    private Ricept getRicept(int number) throws RuntimeException {
+    public Ricept getRicept(int number) throws RuntimeException {
         if (allRecepts.containsKey(number)) {
              return  allRecepts.get(number);
         }

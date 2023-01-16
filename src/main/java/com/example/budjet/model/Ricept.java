@@ -8,9 +8,9 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class Ricept {
-    String name;
-    int timeCook;
-    ArrayList<String> ingredients;
-    StringBuilder steps;
+ private    String name;
+     private int timeCook;
+   private ArrayList<String> ingredients;
+  private   String steps;
 
 }
