@@ -15,13 +15,13 @@ public class RiceptController {
         this.recipService = recipService;
     }
     @PostMapping
-    public  String addRicepr(@RequestBody Ricept ricept) {
-        return this.recipService.addRecipt(ricept).toString();
+    public  Integer addRicepr(@RequestBody Ricept ricept) {
+        return this.recipService.addRecipt(ricept);
     }
 
     @GetMapping
-    public  String getRicept(int number) {
-        return this.recipService.getRicept(number).toString();
+    public  Ricept getRicept(int number) {
+        return this.recipService.getRicept(number);
     }
 }
 

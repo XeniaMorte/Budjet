@@ -12,13 +12,14 @@ public class IngridientService {
     private int number = 0;
     private HashMap<Integer, Ingridient> allIngridients;
 
-    private void addIng(int number, Ingridient ingridient) {
+    public Integer addIng( Ingridient ingridient) {
         Ingridient ingridient1 = allIngridients.getOrDefault(number, ingridient);
         allIngridients.put(number++, ingridient1);
+        return number;
 
     }
 
-    private Ingridient getIng(int number) throws RuntimeException {
+    public Ingridient getIng(int number) throws RuntimeException {
         if (allIngridients.containsKey(number)) {
             return allIngridients.get(number);
         } else throw new RuntimeException("Error 2");

@@ -6,6 +6,7 @@ import com.example.budjet.service.IngridientService;
 import com.example.budjet.service.RecipService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,13 +18,13 @@ public class IngridientController {
         this.ingridientService= ingridientService;
     }
     @GetMapping
-    public static String addIng(int number, Ingridient ingridient) {
-        return "ingridient";
+    public Integer addIng(@RequestBody  Ingridient ingridient) {
+            return this.ingridientService.addIng(ingridient);
     }
 
     @PostMapping
-    public static String getIng(int number) {
-        return "Ксеня Новикова\n9.01.23\nРецепт\nСоздание рецептов";
+    public Ingridient getIng(int number) {
+        return this.ingridientService.getIng(number);
     }
 }
 
