@@ -24,6 +24,17 @@ public class RecipService {
         else throw new ExceptionAuthor();
 
     }
+    public void editRec(int number,Ricept newricept){
+        newricept=allRecepts.get(number);
+        allRecepts.replace(number,newricept);
+    }
+    public void deliteRec(int number){
+        allRecepts.remove(number);
+    }
+    public String getAllRec(){
+        return  allRecepts.toString();
+    }
+
 }
 
 

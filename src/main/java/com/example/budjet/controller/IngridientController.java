@@ -4,10 +4,7 @@ import com.example.budjet.model.Ingridient;
 import com.example.budjet.model.Ricept;
 import com.example.budjet.service.IngridientService;
 import com.example.budjet.service.RecipService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class IngridientController {
@@ -26,6 +23,21 @@ public class IngridientController {
     public Ingridient getIng(int number) {
         return this.ingridientService.getIng(number);
     }
+    @PutMapping
+    public Ingridient editIng(int number,Ingridient newingridient){
+        return  this.ingridientService.editIng(number,newingridient);
+    }
+    @DeleteMapping
+    public void deliteIng (int number){
+        this.ingridientService.deliteIng(number);
+
+    }
+    @GetMapping
+    public String getAllIng(){
+     return    this.ingridientService.getAllIng();
+    }
+
+
 }
 
 
