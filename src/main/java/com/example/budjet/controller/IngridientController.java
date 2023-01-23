@@ -22,7 +22,7 @@ public class IngridientController {
             return this.ingridientService.addIng(ingridient);
     }
 
-    @PostMapping
+    @GetMapping
     public Ingridient getIng(int number) {
         return this.ingridientService.getIng(number);
     }
