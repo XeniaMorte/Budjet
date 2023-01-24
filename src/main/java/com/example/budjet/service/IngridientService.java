@@ -13,7 +13,7 @@ public class IngridientService {
     private int number = 0;
     private HashMap<Integer, Ingridient> allIngridients;
 
-    public Integer addIng( Ingridient ingridient) {
+    public Integer addIng(Ingridient ingridient) {
         Ingridient ingridient1 = allIngridients.getOrDefault(number, ingridient);
         allIngridients.put(number++, ingridient1);
         return number;
@@ -26,19 +26,20 @@ public class IngridientService {
         } else throw new RuntimeException("Error 2");
 
     }
-    public Ingridient editIng(int number,Ingridient newingridient)throws ExceptionAuthor{
-       newingridient= allIngridients.get(number);
-      return  newingridient;
+
+    public Ingridient editIng(int number, Ingridient newingridient) throws ExceptionAuthor {
+        newingridient = allIngridients.get(number);
+        return newingridient;
 
     }
-    public void deliteIng (int number){
+
+    public void deliteIng(int number) {
         allIngridients.remove(number);
     }
-    public String getAllIng(){
-        return allIngridients.toString();
+
+    public String getAllIng() {
+        return allIngridients.values().toString();
     }
-
-
 
 
 }

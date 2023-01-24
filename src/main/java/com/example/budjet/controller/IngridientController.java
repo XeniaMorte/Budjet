@@ -6,35 +6,39 @@ import com.example.budjet.service.IngridientService;
 import com.example.budjet.service.RecipService;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("/ingridient")
 public class IngridientController {
 
     public final IngridientService ingridientService;
 
-    public IngridientController( IngridientService ingridientService) {
-        this.ingridientService= ingridientService;
-    }
-    @GetMapping
-    public Integer addIng(@RequestBody  Ingridient ingridient) {
-            return this.ingridientService.addIng(ingridient);
+    public IngridientController(IngridientService ingridientService) {
+        this.ingridientService = ingridientService;
     }
 
-    @GetMapping
-    public Ingridient getIng(int number) {
+    @PostMapping("/add")
+    public Integer addIng(@RequestBody Ingridient ingridient) {
+        return this.ingridientService.addIng(ingridient);
+    }
+
+    @GetMapping("/get")
+    public Ingridient getIng(@RequestParam("number") int number) {
         return this.ingridientService.getIng(number);
     }
-    @PutMapping
-    public Ingridient editIng(int number,Ingridient newingridient){
-        return  this.ingridientService.editIng(number,newingridient);
+
+    @PutMapping("/edit")
+    public Ingridient editIng(@RequestParam("number") int number, @RequestBody Ingridient newingridient) {
+        return this.ingridientService.editIng(number, newingridient);
     }
-    @DeleteMapping
-    public void deliteIng (int number){
+
+    @DeleteMapping("/delete")
+    public void deliteIng(@RequestParam("number") int number){
         this.ingridientService.deliteIng(number);
 
     }
+
     @GetMapping
-    public String getAllIng(){
-     return    this.ingridientService.getAllIng();
+    public String getAllIng() {
+        return this.ingridientService.getAllIng();
     }
 
 

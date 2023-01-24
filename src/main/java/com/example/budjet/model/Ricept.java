@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Ricept {
  private    String name;
      private int timeCook;
-   private ArrayList<String> ingredients;
-  private   String steps;
+   private ArrayList<Ingridient> ingredients;
+  private   ArrayList<String> steps;
 
 }
