@@ -25,7 +25,7 @@ public class RiceptController {
     }
 
     @GetMapping
-    public void editRec(@PathVariable int number,@RequestBody Ricept newricept) {
+    public void editRec(@PathVariable int number, @RequestBody Ricept newricept) {
         this.recipService.editRec(number, newricept);
     }
 

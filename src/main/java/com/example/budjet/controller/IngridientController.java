@@ -6,7 +6,9 @@ import com.example.budjet.service.IngridientService;
 import com.example.budjet.service.RecipService;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/ingridient")
+
+@RestController
+@RequestMapping("/service/")
 public class IngridientController {
 
     public final IngridientService ingridientService;
@@ -32,7 +34,7 @@ public class IngridientController {
 
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{number}")
     public void deliteIng(@PathVariable int number) {
         this.ingridientService.deliteIng(number);
     }
