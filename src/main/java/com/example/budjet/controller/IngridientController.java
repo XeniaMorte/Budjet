@@ -15,7 +15,7 @@ public class IngridientController {
         this.ingridientService = ingridientService;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public Integer addIng(@RequestBody Ingridient ingridient) {
         return this.ingridientService.addIng(ingridient);
     }
@@ -30,10 +30,11 @@ public class IngridientController {
         return this.ingridientService.editIng(number, newingridient);
     }
 
-    @DeleteMapping("/delete")
-    public void deliteIng(@RequestParam("number") int number){
-        this.ingridientService.deliteIng(number);
 
+
+    @DeleteMapping("/{id}")
+    public void deliteIng(@PathVariable int number) {
+        this.ingridientService.deliteIng(number);
     }
 
     @GetMapping

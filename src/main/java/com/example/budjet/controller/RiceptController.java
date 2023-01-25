@@ -18,23 +18,25 @@ public class RiceptController {
         return this.recipService.addRecipt(ricept);
     }
 
-    @GetMapping
-    public Ricept getRicept(int number) {
+
+    @GetMapping("/{number}")
+    public Ricept getRicept(@PathVariable int number) {
         return this.recipService.getRicept(number);
     }
 
     @GetMapping
-    public void editRec(int number, Ricept newricept) {
+    public void editRec(@PathVariable int number,@RequestBody Ricept newricept) {
         this.recipService.editRec(number, newricept);
     }
 
-    @DeleteMapping
-    public void deliteRec(int number) {
+    @DeleteMapping("/{number}")
+    public void deliteRec(@PathVariable int number) {
         this.recipService.deliteRec(number);
     }
+
     @GetMapping
-    public String getAllRec(){
-       return this.recipService.getAllRec();
+    public String getAllRec() {
+        return this.recipService.getAllRec();
     }
 
 }
