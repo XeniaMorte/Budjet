@@ -28,7 +28,9 @@ public class IngridientService {
     }
 
     public Ingridient editIng(int number, Ingridient newingridient) throws ExceptionAuthor {
-        newingridient = allIngridients.get(number);
+        if (allIngridients.containsKey(number)) {
+            newingridient = allIngridients.replace(number, newingridient);
+        }
         return newingridient;
 
     }
@@ -37,8 +39,8 @@ public class IngridientService {
         allIngridients.remove(number);
     }
 
-    public String getAllIng() {
-        return allIngridients.values().toString();
+    public HashMap<Integer, Ingridient>  getAllIng() {
+        return (HashMap<Integer, Ingridient>) allIngridients.values();
     }
 
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/service/")
+@RequestMapping("/ingridients/")
 public class IngridientController {
 
     public final IngridientService ingridientService;
