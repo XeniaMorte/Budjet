@@ -3,14 +3,21 @@ package com.example.budjet.service;
 import com.example.budjet.exceptions.ExceptionAuthor;
 import com.example.budjet.model.Ingridient;
 import com.example.budjet.model.Ricept;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 @Service
 public class IngridientService {
     private int number = 0;
+    @Autowired
+    FileService<Ingridient> fileService;
+    @Value("${settings.ing.file.path}")
+    private String path;
     private HashMap<Integer, Ingridient> allIngridients;
 
     public Integer addIng(Ingridient ingridient) {
@@ -40,8 +47,18 @@ public class IngridientService {
     }
 
     public HashMap<Integer, Ingridient>  getAllIng() {
-        return (HashMap<Integer, Ingridient>) allIngridients.values();
+        return allIngridients;
     }
+   private  void saveRec() {
+        try {
+
+            fileService.saveFile(new ArrayList<>(getAllIng().values()),path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    // вызвать метод saverec при любом изменении рецептов
+
 
 
 }

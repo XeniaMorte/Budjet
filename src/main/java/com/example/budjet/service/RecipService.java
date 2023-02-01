@@ -4,6 +4,7 @@ import com.example.budjet.exceptions.ExceptionAuthor;
 import com.example.budjet.model.Ricept;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,13 +22,15 @@ public class RecipService {
     @Value("${settings.ricipe.file.path}")
     private String path;
     private Integer number = 0;
-    private HashMap<Integer, Ricept> allRecepts;
+    @Autowired
+    FileService<Ricept> fileService;
+    private HashMap<Integer, Ricept> allRecepts = new HashMap<>();
 
     public Integer addRecipt(Ricept ricept) {
-
-        Ricept riceptA = allRecepts.getOrDefault(number, ricept);
-        allRecepts.put(number++, riceptA);
+        allRecepts.put(number++, ricept);
+        saveRec();
         return number;
+
     }
 
     public Ricept getRicept(int number) throws ExceptionAuthor {
@@ -39,10 +43,12 @@ public class RecipService {
     public void editRec(int number, Ricept newricept) {
         newricept = allRecepts.get(number);
         allRecepts.replace(number, newricept);
+        saveRec();
     }
 
     public void deliteRec(int number) {
         allRecepts.remove(number);
+        saveRec();
     }
 
     public HashMap<Integer, Ricept> getAllRec() {
@@ -77,10 +83,12 @@ public class RecipService {
     @PostConstruct
     public void init() {
 
+
         try {
-            File file = new File(path);
-            ObjectMapper objectMapper = new ObjectMapper();// считывает содержимое , переводит в объект или из объекта делает например строку
-            List<Ricept> riceptsFromFile = objectMapper.readValue(file, List.class);
+            //File file = new File(path);
+            //  ObjectMapper objectMapper = new ObjectMapper();// считывает содержимое , переводит в объект или из объекта делает например строку
+
+            List<Ricept> riceptsFromFile = fileService.readFromFile(path);
             riceptsFromFile.forEach(this::addRecipt);//== мы вызываем this.addRec и в параметре передаем каждый элем списка
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,13 +98,12 @@ public class RecipService {
     public void saveRec() {
         try {
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            String stringOfRec = objectMapper.writeValueAsString(allRecepts.values());
-            Files.writeString(Path.of(path), stringOfRec, StandardOpenOption.CREATE);
+            fileService.saveFile(new ArrayList<>(getAllRec().values()), path);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }
 
 

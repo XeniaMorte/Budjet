@@ -6,6 +6,8 @@ import com.example.budjet.service.IngridientService;
 import com.example.budjet.service.RecipService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 
 @RestController
 @RequestMapping("/ingridients/")
@@ -40,7 +42,7 @@ public class IngridientController {
     }
 
     @GetMapping
-    public String getAllIng() {
+    public HashMap<Integer, Ingridient> getAllIng() {
         return this.ingridientService.getAllIng();
     }
 
