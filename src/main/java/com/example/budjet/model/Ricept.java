@@ -14,4 +14,9 @@ public class Ricept {
    private ArrayList<Ingridient> ingredients;
   private   ArrayList<String> steps;
 
+    public Ricept() {
+
+    }
+
+
 }

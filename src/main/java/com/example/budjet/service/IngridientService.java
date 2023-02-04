@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Service
 public class IngridientService {
     private int number = 0;
     @Autowired
-    FileService<Ingridient> fileService;
+    FileService<List<Ingridient>> fileService;
     @Value("${settings.ing.file.path}")
     private String path;
     private HashMap<Integer, Ingridient> allIngridients;

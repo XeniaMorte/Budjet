@@ -4,6 +4,8 @@ import com.example.budjet.exceptions.ExceptionAuthor;
 import com.example.budjet.model.Ricept;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
+import com.fasterxml.jackson.core.type.TypeReference;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ public class RecipService {
     private String path;
     private Integer number = 0;
     @Autowired
-    FileService<Ricept> fileService;
+    FileService<List<Ricept>> fileService;
     private HashMap<Integer, Ricept> allRecepts = new HashMap<>();
 
     public Integer addRecipt(Ricept ricept) {
@@ -88,7 +90,7 @@ public class RecipService {
             //File file = new File(path);
             //  ObjectMapper objectMapper = new ObjectMapper();// считывает содержимое , переводит в объект или из объекта делает например строку
 
-            List<Ricept> riceptsFromFile = fileService.readFromFile(path);
+            List<Ricept> riceptsFromFile = fileService.readFromFile(path,new TypeReference<List<Ricept>>(){});
             riceptsFromFile.forEach(this::addRecipt);//== мы вызываем this.addRec и в параметре передаем каждый элем списка
         } catch (Exception e) {
             e.printStackTrace();

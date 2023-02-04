@@ -10,4 +10,7 @@ public class Ingridient {
     private String nameIng;
     private int countIng;
     private String typeIzm;
+    public Ingridient(){
+
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.budjet.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -12,14 +14,14 @@ import java.util.List;
 
 @Service
 public class FileService<T> {
-    public List<T> readFromFile(String path) throws IOException {
+    public T readFromFile(String path, TypeReference<T> type) throws IOException {
         File file = new File(path);
         ObjectMapper objectMapper = new ObjectMapper();
-        List<T> resoult = objectMapper.readValue(file, List.class);
-        return resoult;
+        return  objectMapper.readValue(file, type);
+
     }
 
-    public void saveFile(List<T> payload, String path) {
+    public void saveFile(T payload, String path) {
         try {
 
             ObjectMapper objectMapper = new ObjectMapper();
