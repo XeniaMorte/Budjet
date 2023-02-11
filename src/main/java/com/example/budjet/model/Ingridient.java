@@ -7,9 +7,11 @@ import lombok.Data;
 @AllArgsConstructor
 
 public class Ingridient {
-    private String nameIng;
-    private int countIng;
-    private String typeIzm;
+    private String name;
+    private int weight;
+    private String meraIzmerenia;
+
+
     public Ingridient(){
 
     }

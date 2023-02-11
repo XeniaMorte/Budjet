@@ -2,18 +2,12 @@ package com.example.budjet.service;
 
 import com.example.budjet.exceptions.ExceptionAuthor;
 import com.example.budjet.model.Ricept;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
 import com.fasterxml.jackson.core.type.TypeReference;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,14 +47,14 @@ public class RecipService {
         saveRec();
     }
 
-    public HashMap<Integer, Ricept> getAllRec() {
-        return (HashMap<Integer, Ricept>) allRecepts.values();
+    public List<Ricept> getAllRec() {
+        return new ArrayList<>(allRecepts.values());
     }
 
     public List<Ricept> getAllRecByIngridientId(String name) {
         return allRecepts.values().stream().filter((rec) -> {
             return rec.getIngredients().stream().filter(ing -> {
-                return ing.getNameIng().equals(name);
+                return ing.getName().equals(name);
             }).collect(Collectors.toList()).size() > 0;
         }).collect(Collectors.toList());
         //streamAPI
@@ -73,7 +67,7 @@ public class RecipService {
     public List<Ricept> getAllRecByIngridientNames(List<String> names) {
         return allRecepts.values().stream().filter((rec) -> {
             return rec.getIngredients().stream().filter(ing -> {
-                return names.contains(ing.getNameIng());
+                return names.contains(ing.getName());
             }).collect(Collectors.toList()).size() > 0;
         }).collect(Collectors.toList());
         //streamAPI
@@ -85,12 +79,11 @@ public class RecipService {
     @PostConstruct
     public void init() {
 
-
         try {
             //File file = new File(path);
             //  ObjectMapper objectMapper = new ObjectMapper();// считывает содержимое , переводит в объект или из объекта делает например строку
 
-            List<Ricept> riceptsFromFile = fileService.readFromFile(path,new TypeReference<List<Ricept>>(){});
+            ArrayList<Ricept> riceptsFromFile = (ArrayList<Ricept>) fileService.readFromFile(path,new TypeReference<List<Ricept>>(){});
             riceptsFromFile.forEach(this::addRecipt);//== мы вызываем this.addRec и в параметре передаем каждый элем списка
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,7 +93,7 @@ public class RecipService {
     public void saveRec() {
         try {
 
-            fileService.saveFile(new ArrayList<>(getAllRec().values()), path);
+            fileService.saveFile(new ArrayList<>(getAllRec()), path);
         } catch (Exception e) {
             e.printStackTrace();
         }

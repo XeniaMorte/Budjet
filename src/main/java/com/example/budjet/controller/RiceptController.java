@@ -5,6 +5,7 @@ import com.example.budjet.service.RecipService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class RiceptController {
@@ -37,7 +38,7 @@ public class RiceptController {
     }
 
     @GetMapping
-    public HashMap<Integer, Ricept>  getAllRec() {
+    public List< Ricept> getAllRec() {
         return this.recipService.getAllRec();
     }
 

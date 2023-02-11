@@ -15,7 +15,9 @@ import java.util.List;
 @Service
 public class FileService<T> {
     public T readFromFile(String path, TypeReference<T> type) throws IOException {
+        System.out.print(">>>>>>>>>>>");
         File file = new File(path);
+        System.out.println(file.getAbsolutePath());
         ObjectMapper objectMapper = new ObjectMapper();
         return  objectMapper.readValue(file, type);
 
