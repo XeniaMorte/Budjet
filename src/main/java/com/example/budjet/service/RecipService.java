@@ -23,10 +23,14 @@ public class RecipService {
     private HashMap<Integer, Ricept> allRecepts = new HashMap<>();
 
     public Integer addRecipt(Ricept ricept) {
+        Integer id = _addRecipt(ricept);
+        saveRec();
+        return id;
+    }
+    private Integer _addRecipt(Ricept ricept) {
         allRecepts.put(number++, ricept);
         saveRec();
         return number;
-
     }
 
     public Ricept getRicept(int number) throws ExceptionAuthor {
