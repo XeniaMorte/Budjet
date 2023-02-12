@@ -1,7 +1,14 @@
 package com.example.budjet.controller;
 
+import com.example.budjet.model.Ingridient;
 import com.example.budjet.model.Ricept;
 import com.example.budjet.service.RecipService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -38,6 +45,16 @@ public class RiceptController {
     }
 
     @GetMapping
+
+    @Operation(summary = "получение всех рецептов")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "рецепты были найдены",
+                    content = {
+                            @Content(mediaType = "json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Ricept.class)))
+                    })
+    })
     public List< Ricept> getAllRec() {
         return this.recipService.getAllRec();
     }
