@@ -46,8 +46,9 @@ public class IngridientService {
     public Ingridient editIng(int number, Ingridient newingridient) throws ExceptionAuthor {
         if (allIngridients.containsKey(number)) {
             newingridient = allIngridients.replace(number, newingridient);
+            saveRec();
         }
-        saveRec();
+
         return newingridient;
 
 

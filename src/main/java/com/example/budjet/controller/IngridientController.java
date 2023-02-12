@@ -27,27 +27,27 @@ public class IngridientController {
         this.ingridientService = ingridientService;
     }
 
-//    @PostMapping
-//    public Integer addIng(@RequestBody Ingridient ingridient) {
-//        return this.ingridientService.addIng(ingridient);
-//    }
+    @PostMapping
+    public Integer addIng(@RequestBody Ingridient ingridient) {
+        return this.ingridientService.addIng(ingridient);
+    }
 
     @GetMapping("/get")
     public Ingridient getIng(@RequestParam("number") int number) {
         return this.ingridientService.getIng(number);
     }
 
- //   @PutMapping("/edit")
-  //  public Ingridient editIng(@RequestParam("number") int number, @RequestBody Ingridient newingridient) {
- //       return this.ingridientService.editIng(number, newingridient);
-  //  }
+    @PutMapping("/edit")
+    public Ingridient editIng(@RequestParam("number") int number, @RequestBody Ingridient newingridient) {
+        return this.ingridientService.editIng(number, newingridient);
+    }
 
 
 
-//    @DeleteMapping("/{number}")
-//    public void deliteIng(@PathVariable int number) {
-//        this.ingridientService.deliteIng(number);
-//    }
+    @DeleteMapping("/{number}")
+    public void deliteIng(@PathVariable int number) {
+        this.ingridientService.deliteIng(number);
+    }
 
     @GetMapping
     @Operation(summary = "получение всех ингридиентов")

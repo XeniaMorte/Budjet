@@ -22,15 +22,16 @@ public class RecipService {
     FileService<List<Ricept>> fileService;
     private HashMap<Integer, Ricept> allRecepts = new HashMap<>();
 
+
+    private Integer _addRecipt(Ricept ricept) {
+        allRecepts.put(number++, ricept);
+        return number;
+    }
+
     public Integer addRecipt(Ricept ricept) {
         Integer id = _addRecipt(ricept);
         saveRec();
         return id;
-    }
-    private Integer _addRecipt(Ricept ricept) {
-        allRecepts.put(number++, ricept);
-        saveRec();
-        return number;
     }
 
     public Ricept getRicept(int number) throws ExceptionAuthor {
@@ -87,7 +88,8 @@ public class RecipService {
             //File file = new File(path);
             //  ObjectMapper objectMapper = new ObjectMapper();// считывает содержимое , переводит в объект или из объекта делает например строку
 
-            ArrayList<Ricept> riceptsFromFile = (ArrayList<Ricept>) fileService.readFromFile(path,new TypeReference<List<Ricept>>(){});
+            ArrayList<Ricept> riceptsFromFile = (ArrayList<Ricept>) fileService.readFromFile(path, new TypeReference<List<Ricept>>() {
+            });
             riceptsFromFile.forEach(this::addRecipt);//== мы вызываем this.addRec и в параметре передаем каждый элем списка
         } catch (Exception e) {
             e.printStackTrace();
