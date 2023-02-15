@@ -37,7 +37,9 @@ public class RecipService {
     public Ricept getRicept(int number) throws ExceptionAuthor {
         if (allRecepts.containsKey(number)) {
             return allRecepts.get(number);
-        } else throw new ExceptionAuthor();
+        }
+
+        throw new ExceptionAuthor();
 
     }
 

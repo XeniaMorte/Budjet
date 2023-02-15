@@ -22,7 +22,7 @@ public class IngridientService {
     FileService<List<Ingridient>> fileService;
     @Value("${settings.ing.file.path}")
     private String path;
-    private HashMap<Integer, Ingridient> allIngridients;
+    private HashMap<Integer, Ingridient> allIngridients=new HashMap<>();
 
     private Integer _addIng(Ingridient ingridient) {
         Ingridient ingridient1 = allIngridients.getOrDefault(number, ingridient);

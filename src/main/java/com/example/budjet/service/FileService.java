@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.List;
 
 @Service
 public class FileService<T> {
@@ -19,7 +18,7 @@ public class FileService<T> {
         File file = new File(path);
         System.out.println(file.getAbsolutePath());
         ObjectMapper objectMapper = new ObjectMapper();
-        return  objectMapper.readValue(file, type);
+        return objectMapper.readValue(file, type);
 
     }
 
@@ -33,6 +32,23 @@ public class FileService<T> {
             e.printStackTrace();
         }
     }
+
+    public File getDataFile(String path) {
+        return new File(path);
+    }
+
+    public boolean cleanDataFile(String path) {
+        try {
+            Path filePath = Path.of(path);
+            Files.deleteIfExists(filePath);
+            Files.createFile(filePath);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
 
 

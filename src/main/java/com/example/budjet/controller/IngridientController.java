@@ -34,6 +34,7 @@ public class IngridientController {
 
     @GetMapping("/get")
     public Ingridient getIng(@RequestParam("number") int number) {
+
         return this.ingridientService.getIng(number);
     }
 

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ricepts/")
 public class RiceptController {
 
     private RecipService recipService;
@@ -55,7 +56,7 @@ public class RiceptController {
                                     array = @ArraySchema(schema = @Schema(implementation = Ricept.class)))
                     })
     })
-    public List< Ricept> getAllRec() {
+    public List<Ricept> getAllRec() {
         return this.recipService.getAllRec();
     }
 
