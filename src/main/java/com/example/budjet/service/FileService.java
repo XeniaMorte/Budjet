@@ -48,6 +48,16 @@ public class FileService<T> {
             return false;
         }
     }
+    public Path createTempleFile(String path) {
+        try {
+            return Files.createTempFile(path,"tempFile");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
 
